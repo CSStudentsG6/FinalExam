@@ -73,12 +73,18 @@
         a {
             text-decoration: none;
         }
+
+        /* Styling for the "Welcome to My App" text */
+        .welcome-message {
+            font-size: 2rem;
+            color: #ff6a13; /* Same burnt orange */
+            margin-top: 10px;
+        }
     </style>
 </head>
 <body>
-    <h1>Welcome to Restaurant Decider!</h1>
-    <p>Click the button below to get started.</p>
+    <h1>Welcome to our app!</h1>
+    <p class="welcome-message">click to get started</p> <!-- Added this line for the "Welcome to My App" text -->
     <p><a href="{% url 'register' %}"><button>Next</button></a></p>
 </body>
 </html>
-

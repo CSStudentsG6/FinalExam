@@ -39,7 +39,7 @@ restaurants = [
 
 # Home view
 def home(request):
-    return render(request, 'restaurant/home.html')
+    return render(request, 'myapp/home.html')
 
 # Guest View
 def guest(request):
