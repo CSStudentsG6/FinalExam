@@ -1,0 +1,84 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Restaurant Finder</title>
+    <style>
+        body {
+            background-color: #1a2630; /* Navy blue background */
+            color: #ff6a13; /* Burnt orange text color */
+            font-family: Arial, sans-serif;
+            text-align: center;
+            margin: 0;
+            padding: 0;
+            height: 100vh; /* Full viewport height */
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            flex-direction: column;
+        }
+
+        h1 {
+            color: #ff6a13; /* Burnt orange text color */
+            font-size: 3rem;
+            animation: outlinePulse 1.5s infinite alternate, fadeIn 1.5s forwards;
+            position: relative;
+        }
+
+        /* Dark red outline pulsing effect */
+        @keyframes outlinePulse {
+            0% {
+                text-shadow: 0 0 10px rgba(139, 0, 0, 0.8), 0 0 20px rgba(139, 0, 0, 0.6), 0 0 30px rgba(139, 0, 0, 0.4);
+            }
+            50% {
+                text-shadow: 0 0 20px rgba(139, 0, 0, 1), 0 0 30px rgba(139, 0, 0, 0.8), 0 0 40px rgba(139, 0, 0, 0.5);
+            }
+            100% {
+                text-shadow: 0 0 10px rgba(139, 0, 0, 0.8), 0 0 20px rgba(139, 0, 0, 0.6), 0 0 30px rgba(139, 0, 0, 0.4);
+            }
+        }
+
+        /* Fade-in effect */
+        @keyframes fadeIn {
+            0% {
+                opacity: 0;
+            }
+            100% {
+                opacity: 1;
+            }
+        }
+
+        p {
+            color: #ff6a13; /* Burnt orange text color */
+            font-size: 18px;
+        }
+
+        button {
+            background-color: transparent; /* Transparent background */
+            color: #ff6a13; /* Burnt orange text color */
+            padding: 10px 20px;
+            border: 2px solid #ff6a13; /* Burnt orange border */
+            cursor: pointer;
+            font-size: 16px;
+            border-radius: 5px;
+            transition: background-color 0.3s ease, color 0.3s ease;
+        }
+
+        button:hover {
+            background-color: #ff6a13; /* Burnt orange background on hover */
+            color: white; /* White text on hover */
+        }
+
+        a {
+            text-decoration: none;
+        }
+    </style>
+</head>
+<body>
+    <h1>Welcome to Restaurant Decider!</h1>
+    <p>Click the button below to get started.</p>
+    <p><a href="{% url 'register' %}"><button>Next</button></a></p>
+</body>
+</html>
+

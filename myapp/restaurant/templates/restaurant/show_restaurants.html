@@ -1,0 +1,157 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Restaurant Results</title>
+    <style>
+        /* Global styles */
+        body {
+            background-color: #1a2630; /* Navy blue background */
+            color: #ff6a13; /* Burnt orange text color */
+            font-family: Arial, sans-serif;
+            text-align: center;
+            margin: 0;
+            padding: 0;
+        }
+
+        h1 {
+            color: #ff6a13; /* Burnt orange color */
+            margin-bottom: 20px;
+        }
+
+        /* Restaurant card container styles */
+        .restaurant-list {
+            display: flex;
+            overflow-x: auto;
+            gap: 20px;
+            padding: 20px;
+            scroll-snap-type: x mandatory;
+            -webkit-overflow-scrolling: touch;
+            justify-content: center;
+            flex-wrap: nowrap;
+        }
+
+        /* Restaurant card styles */
+        .restaurant-card {
+            border: 1px solid #ff6a13; /* Burnt orange border */
+            margin: 10px;
+            padding: 20px;
+            background-color: white;
+            min-width: 250px;
+            max-width: 280px;
+            height: 400px; /* Adjust the height for a card-like appearance */
+            box-sizing: border-box;
+            scroll-snap-align: start;
+            border-radius: 16px; /* Rounded corners for card-like appearance */
+            box-shadow: 0px 4px 6px rgba(0, 0, 0, 0.1);
+            display: flex;
+            flex-direction: column;
+            justify-content: space-between;
+            transition: transform 0.3s ease;
+        }
+
+        .restaurant-card:hover {
+            transform: translateY(-10px); /* Lift the card on hover */
+        }
+
+        /* Title and category styling */
+        h3 {
+            font-size: 1.25rem;
+            margin-bottom: 10px;
+            color: #1a2630; /* Navy blue text color for headings */
+        }
+
+        p {
+            margin-bottom: 8px;
+            color: #1a2630; /* Navy blue text color for paragraphs */
+        }
+
+        /* Button styling */
+        a {
+            color: #ff6a13; /* Burnt orange color for links */
+            text-decoration: none;
+            font-size: 16px;
+            margin-top: 20px;
+            display: inline-block;
+        }
+        
+        button:hover {
+            background-color: #e55a00; /* Darker burnt orange on hover */
+        }
+
+        /* Mobile responsiveness */
+        @media (max-width: 600px) {
+            .restaurant-card {
+                min-width: 85%;
+                max-width: 90%;
+                height: auto;
+            }
+        }
+
+        /* Link styling */
+        a {
+            color: #ff6a13; /* Burnt orange color for links */
+            text-decoration: none;
+            margin-top: 20px;
+        }
+
+        a:hover {
+            text-decoration: underline;
+        }
+
+        /* Back Button Styling */
+        .back-button {
+            position: absolute;
+            top: 20px;
+            left: 20px;
+            padding: 10px 20px;
+            background-color: #ff6a13;
+            color: white;
+            text-decoration: none;
+            border-radius: 5px;
+            font-size: 16px;
+            z-index: 10; /* Ensures the button is above other elements */
+        }
+
+        .back-button:hover {
+            background-color: #e55a00;
+        }
+    </style>
+</head>
+<body>
+
+    <!-- Back Button -->
+    <a href="javascript:history.back()" class="back-button">Back</a>
+
+    <h1>Restaurant Results</h1>
+    
+    {% if not selected_restaurants %}
+        <p>No restaurants found for your selection.</p>
+    {% else %}
+        <p>Showing restaurants for the categories: {{ categories|join:', ' }} and budget: {{ budget_range }}</p>
+
+        <div class="restaurant-list">
+            {% for restaurant in selected_restaurants %}
+                <div class="restaurant-card">
+                    <h3>{{ restaurant.name }}</h3>
+                    <p>Category: {{ restaurant.category }}</p>
+                    <p>Budget: {{ restaurant.budget_ranges|join:', ' }}</p>
+                    <form action="{% url 'eliminate_or_new_round' %}" method="GET">
+                        <button type="submit" name="eliminate" value="{{ restaurant.name }}">Eliminate</button>
+                    </form>
+                </div>
+            {% endfor %}
+        </div>
+    {% endif %}
+
+    <form action="{% url 'eliminate_or_new_round' %}" method="GET">
+        <button type="submit" name="new_round" value="true">Start a New Round</button>
+    </form>
+
+    <br>
+    <a href="{% url 'choose_category' %}?budget_range={{ budget_range }}">Back to Category Selection</a>
+
+</body>
+</html>
+

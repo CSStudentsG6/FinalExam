@@ -1,8 +1,8 @@
+# myapp/urls.py
 from django.urls import path
 from . import views
 
 urlpatterns = [
-    path('', views.home, name='home'),
-    path('register/', views.register, name='register'),  # ✅ this is the key line
+    path('', views.home, name='home'),  # Home page for myapp
 ]
 

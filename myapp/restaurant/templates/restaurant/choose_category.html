@@ -1,0 +1,137 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Choose Categories</title>
+    <style>
+        body {
+            background-color: #1a2630; /* Navy blue background */
+            color: #ff6a13; /* Burnt orange text color */
+            font-family: Arial, sans-serif;
+            text-align: center;
+            margin: 0;
+            padding: 0;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            box-sizing: border-box;
+            position: relative;
+        }
+
+        h1 {
+            color: #ff6a13; /* Burnt orange text color */
+            margin-bottom: 20px;
+        }
+
+        .section h2 {
+            color: #ff6a13; /* Burnt orange text color */
+        }
+
+        .category-box {
+            border: 1px solid #ff6a13; /* Burnt orange border */
+            margin: 10px;
+            padding: 20px;
+            display: block;
+            cursor: pointer;
+            background-color: white;
+            width: 80%;
+            margin-left: auto;
+            margin-right: auto;
+            font-size: 18px;
+            border-radius: 5px;
+            transition: background-color 0.3s, color 0.3s;
+        }
+
+        .category-box:hover {
+            background-color: #ff6a13; /* Burnt orange on hover */
+            color: white;
+        }
+
+        .category-box.selected {
+            background-color: #ff6a13; /* Burnt orange when selected */
+            color: white;
+        }
+
+        button {
+            background-color: #ff6a13; /* Burnt orange button color */
+            color: white;
+            padding: 12px 24px;
+            border: none;
+            cursor: pointer;
+            margin-top: 20px;
+            font-size: 16px;
+            border-radius: 5px;
+            transition: background-color 0.3s;
+        }
+
+        button:hover {
+            background-color: #e55a00; /* Darker burnt orange on hover */
+        }
+
+        .back-button {
+            position: absolute;
+            top: 20px;
+            left: 20px;
+            padding: 10px 20px;
+            background-color: #ff6a13;
+            color: white;
+            text-decoration: none;
+            border-radius: 5px;
+            font-size: 16px;
+        }
+
+        .back-button:hover {
+            background-color: #e55a00;
+        }
+    </style>
+</head>
+<body>
+
+    <!-- Back Button -->
+    <a href="javascript:history.back()" class="back-button">Back</a>
+    
+    <div>
+        <h1>Choose Categories</h1>
+        <form action="{% url 'show_restaurants' %}" method="GET">
+            <div class="section">
+                <h2>Select Categories</h2>
+                <div id="category-container">
+                    {% for category in categories %}
+                        <div class="category-box" onclick="toggleSelection('{{ category }}')" data-category="{{ category }}">
+                            {{ category }}
+                        </div>
+                    {% endfor %}
+                </div>
+            </div>
+            <input type="hidden" name="categories" id="category-input" value="{{ request.GET.categories }}">
+            <input type="hidden" name="budget_range" value="{{ request.GET.budget_range }}">
+            <button type="submit" id="submit-btn" disabled>Select Restaurants</button>
+        </form>
+    </div>
+
+    <script>
+        let selectedCategories = [];
+
+        function toggleSelection(category) {
+            const index = selectedCategories.indexOf(category);
+            if (index !== -1) {
+                selectedCategories.splice(index, 1);
+            } else {
+                selectedCategories.push(category);
+            }
+
+            // Update the hidden input with selected categories as a comma-separated string
+            document.getElementById('category-input').value = selectedCategories.join(',');
+
+            // Toggle the 'selected' class for the clicked category
+            document.querySelector(`[data-category='${category}']`).classList.toggle('selected');
+
+            // Enable or disable the submit button based on the selection count
+            document.getElementById('submit-btn').disabled = selectedCategories.length === 0;
+        }
+    </script>
+
+</body>
+</html>

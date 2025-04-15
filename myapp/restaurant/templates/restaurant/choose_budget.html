@@ -1,0 +1,95 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Select a Budget Range</title>
+    <style>
+        body {
+            background-color: #1a2630; /* Navy blue background */
+            color: #ff6a13; /* Burnt orange text color */
+            font-family: Arial, sans-serif;
+            text-align: center;
+            margin: 0;
+            padding: 0;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            box-sizing: border-box;
+            position: relative;
+        }
+
+        h1 {
+            color: #ff6a13; /* Burnt orange text color */
+            margin-bottom: 20px;
+        }
+
+        ul {
+            list-style-type: none; /* Removes the default list item dots */
+            padding: 0;
+            margin: 0;
+        }
+
+        a {
+            display: block;
+            padding: 12px;
+            background-color: #ff6a13; /* Burnt orange button color */
+            color: white;
+            text-decoration: none;
+            margin: 5px;
+            font-size: 16px;
+            border-radius: 5px;
+            transition: background-color 0.3s;
+        }
+
+        a:hover {
+            background-color: #e55a00; /* Darker burnt orange on hover */
+        }
+
+        li {
+            margin: 10px 0;
+        }
+
+        .back-button {
+            position: absolute;
+            top: 20px;
+            left: 20px;
+            padding: 10px 20px;
+            background-color: #ff6a13;
+            color: white;
+            text-decoration: none;
+            border-radius: 5px;
+            font-size: 16px;
+        }
+
+        .back-button:hover {
+            background-color: #e55a00;
+        }
+    </style>
+</head>
+<body>
+
+    <!-- Back Button -->
+    <a href="javascript:history.back()" class="back-button">Back</a>
+    
+    <div>
+        <h1>Select a Budget Range</h1>
+        <ul>
+            <li><a href="{% url 'choose_category' %}?budget_range=1$-15$">1$-15$</a></li>
+            <li><a href="{% url 'choose_category' %}?budget_range=16$-25$">16$-25$</a></li>
+            <li><a href="{% url 'choose_category' %}?budget_range=26$-35$">26$-35$</a></li>
+            <li><a href="{% url 'choose_category' %}?budget_range=36$-Above">36$-Above</a></li>
+        </ul>
+    </div>
+
+</body>
+</html>
+
+
+
+
+
+
+
+
