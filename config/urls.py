@@ -23,8 +23,7 @@ urlpatterns = [
     path('admin/', admin.site.urls),
     path('', include('myapp.urls')),  # This includes URLs for myapp
     path('restaurant/', include('myapp.restaurant.urls')),  # This includes URLs for the restaurant app
-    path('calculator/', include('calculator.urls')),
-    path('EL_caltrack/', include('EL_caltrack.urls'))  # This connects your app’s URLs
+    path('calculator/', include('calculator.urls')), # This connects your app’s URLs
 ]
 
 
