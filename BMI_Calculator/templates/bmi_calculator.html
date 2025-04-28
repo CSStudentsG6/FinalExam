@@ -1,0 +1,116 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>{% block title %}BMI Calculator{% endblock %}</title>
+    <link rel="stylesheet" href="{% static 'css/style.css' %}">
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #f4f4f4;
+            text-align: center;
+            padding: 20px;
+        }
+        .container {
+            max-width: 400px;
+            margin: auto;
+            background: white;
+            padding: 20px;
+            border-radius: 10px;
+            box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.1);
+        }
+        h1 {
+            color: #333;
+        }
+        label {
+            font-weight: bold;
+            display: block;
+            margin-top: 10px;
+        }
+        input, select {
+            width: 100%;
+            padding: 8px;
+            margin-top: 5px;
+            border: 1px solid #ccc;
+            border-radius: 5px;
+        }
+        button {
+            margin-top: 15px;
+            background: #007BFF;
+            color: white;
+            border: none;
+            padding: 10px;
+            width: 100%;
+            border-radius: 5px;
+            cursor: pointer;
+        }
+        button:hover {
+            background: #0056b3;
+        }
+        #bmi-result {
+            margin-top: 15px;
+            font-size: 18px;
+            font-weight: bold;
+            color: #28a745;
+        }
+        .history {
+            margin-top: 20px;
+            background: #fff;
+            padding: 10px;
+            border-radius: 5px;
+            box-shadow: 0px 0px 5px rgba(0, 0, 0, 0.1);
+        }
+    </style>
+    <script>
+        function toggleUnits() {
+            let unit = document.getElementById("unit").value;
+            if (unit === "metric") {
+                document.getElementById("weight-label").innerText = "Weight (kg):";
+                document.getElementById("height-label").innerText = "Height (m):";
+            } else {
+                document.getElementById("weight-label").innerText = "Weight (lbs):";
+                document.getElementById("height-label").innerText = "Height (in):";
+            }
+        }
+    </script>
+</head>
+<body>
+    <div class="container">
+        <h1>BMI Calculator</h1>
+        <form id="bmi-form" method="POST" action="{% url 'calculate_bmi' %}">
+            {% csrf_token %}
+            
+            <label for="unit">Select Unit:</label>
+            <select id="unit" name="unit" onchange="toggleUnits()">
+                <option value="metric">Metric (kg, m)</option>
+                <option value="imperial">Imperial (lbs, in)</option>
+            </select>
+            
+            <label id="weight-label" for="weight">Weight (kg):</label>
+            <input type="number" id="weight" name="weight" required>
+            
+            <label id="height-label" for="height">Height (m):</label>
+            <input type="number" step="0.01" id="height" name="height" required>
+            
+            <button type="submit">Calculate BMI</button>
+        </form>
+        
+        <div id="bmi-result">
+            {% if bmi %}
+                <p>Your BMI is: {{ bmi }}</p>
+            {% endif %}
+        </div>
+        
+        <div class="history">
+            <h2>Past Results</h2>
+            <ul>
+                {% for entry in history %}
+                    <li>{{ entry.date }} - BMI: {{ entry.bmi }}</li>
+                {% endfor %}
+            </ul>
+        </div>
+    </div>
+</body>
+</html>
