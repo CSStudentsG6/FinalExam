@@ -25,7 +25,6 @@ INSTALLED_APPS = [
     'myapp',
     'myapp.restaurant',
     'calculator',
-    'myapp.EL_caltrack',
 ]
 
 MIDDLEWARE = [
