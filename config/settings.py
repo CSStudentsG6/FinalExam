@@ -26,6 +26,7 @@ INSTALLED_APPS = [
     'myapp.restaurant',
     'calculator',
     'myapp.EL_caltrack',
+    'BMI_Calculator', 
 ]
 
 MIDDLEWARE = [

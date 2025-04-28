@@ -26,4 +26,4 @@ def calculate_bmi(request):
         except (ValueError, TypeError):
             bmi = "Invalid input"
     
-    return render(request, "bmi_calculator.html", {"bmi": bmi, "history": history})
+    return render(request, 'BMI_Calculator/bmi_calculator.html', {'bmi': bmi, 'history': history})
