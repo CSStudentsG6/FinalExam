@@ -1,0 +1,152 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>{% block title %}BMI Calculator{% endblock %}</title>
+  <link rel="stylesheet" href="{% static 'css/style.css' %}">
+  <style>
+    body {
+      background-color: #0d1117;
+      color: #00bfff;
+      font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+      text-align: center;
+      margin: 0;
+      padding: 0;
+      height: 100vh;
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      align-items: center;
+      position: relative;
+      overflow: hidden;
+    }
+
+    h1 {
+      font-size: 3rem;
+      color: #00bfff;
+      animation: glow 1.5s ease-in-out infinite alternate;
+      text-shadow: 0 0 10px #00bfff, 0 0 20px #006f9f, 0 0 30px #004a66;
+    }
+
+    @keyframes glow {
+      from {
+        text-shadow: 0 0 5px #00bfff, 0 0 10px #006f9f, 0 0 15px #004a66;
+      }
+      to {
+        text-shadow: 0 0 20px #00bfff, 0 0 30px #008fcc, 0 0 40px #00bfff;
+      }
+    }
+
+    .container {
+      max-width: 400px;
+      margin: auto;
+      background: #1e1e1e; /* Dark background for the container */
+      padding: 20px;
+      border-radius: 10px;
+      box-shadow: 0px 0px 10px rgba(0, 191, 255, 0.6); /* Light glow effect */
+    }
+
+    label {
+      font-weight: bold;
+      display: block;
+      margin-top: 10px;
+      color: #00bfff;
+    }
+
+    input, select {
+      width: 100%;
+      padding: 8px;
+      margin-top: 5px;
+      border: 1px solid #00bfff;
+      border-radius: 5px;
+      background-color: #0d1117;
+      color: #00bfff;
+    }
+
+    button {
+      margin-top: 15px;
+      background: #00bfff;
+      color: #0d1117;
+      border: none;
+      padding: 10px;
+      width: 100%;
+      border-radius: 5px;
+      cursor: pointer;
+      transition: all 0.3s ease;
+    }
+
+    button:hover {
+      background: #008fcc;
+      color: #fff;
+      box-shadow: 0 0 10px rgba(0, 191, 255, 0.6);
+    }
+
+    #bmi-result {
+      margin-top: 15px;
+      font-size: 18px;
+      font-weight: bold;
+      color: #28a745;
+    }
+
+    .history {
+      margin-top: 20px;
+      background: #1e1e1e; /* Matching dark background */
+      padding: 10px;
+      border-radius: 5px;
+      box-shadow: 0px 0px 5px rgba(0, 0, 0, 0.1);
+      color: #00bfff;
+    }
+  </style>
+  <script>
+    function toggleUnits() {
+      let unit = document.getElementById("unit").value;
+      if (unit === "metric") {
+        document.getElementById("weight-label").innerText = "Weight (kg):";
+        document.getElementById("height-label").innerText = "Height (m):";
+      } else {
+        document.getElementById("weight-label").innerText = "Weight (lbs):";
+        document.getElementById("height-label").innerText = "Height (in):";
+      }
+    }
+  </script>
+</head>
+<body>
+  <div class="container">
+    <h1>BMI Calculator</h1>
+    <form id="bmi-form" method="POST" action="{% url 'BMI_Calculator:calculate_bmi' %}">
+      {% csrf_token %}
+      
+      <label for="unit">Select Unit:</label>
+      <select id="unit" name="unit" onchange="toggleUnits()">
+        <option value="metric">Metric (kg, m)</option>
+        <option value="imperial">Imperial (lbs, in)</option>
+      </select>
+      
+      <label id="weight-label" for="weight">Weight (kg):</label>
+      <input type="number" id="weight" name="weight" required>
+      
+      <label id="height-label" for="height">Height (m):</label>
+      <input type="number" step="0.01" id="height" name="height" required>
+      
+      <button type="submit">Calculate BMI</button>
+    </form>
+    
+    <div id="bmi-result">
+      {% if bmi %}
+        <p>Your BMI is: {{ bmi }}</p>
+      {% endif %}
+    </div>
+    
+    <div class="history">
+      <h2>Past Results</h2>
+      <ul>
+        {% for entry in history %}
+          <li>{{ entry.date }} - BMI: {{ entry.bmi }}</li>
+        {% endfor %}
+      </ul>
+    </div>
+  </div>
+</body>
+</html>
