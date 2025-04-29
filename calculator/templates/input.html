@@ -3,159 +3,175 @@
 <head>
     <title>Exercise Calculator</title>
     <style>
-        body { font-family: Arial; max-width: 500px; margin: 20px auto; padding: 20px; }
-        .form-group { margin-bottom: 15px; }
-        input, select { padding: 8px; width: 100%; box-sizing: border-box; }
-        button { background: #4CAF50; color: white; border: none; padding: 10px; width: 100%; }
-        *{
-    box-sizing: border-box;
-    -webkit-box-sizing: border-box;
-    -moz-box-sizing: border-box;
-}
-body{
-    font-family: Helvetica;
-    -webkit-font-smoothing: antialiased;
-    
-}
-h1{
-    text-align: center;
-}
-h2{
-    text-align: center;
-    font-size: 18px;
-    text-transform: uppercase;
-    letter-spacing: 1px;
-    color: white;
-    padding: 30px 0;
-}
+        body { 
+            background-color: #0d1117; 
+            color: #00bfff; 
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif; 
+            margin: 0 auto;
+            padding: 20px; 
+            max-width: 800px;
+            position: relative;
+        }
 
-/* Table Styles */
+        h1 { 
+            font-size: 2.5rem; 
+            color: #00bfff; 
+            animation: glow 1.5s ease-in-out infinite alternate; 
+            text-shadow: 0 0 10px #00bfff, 0 0 20px #006f9f, 0 0 30px #004a66;
+            margin-bottom: 20px;
+        }
 
-.table-wrapper{
-    margin: 10px 70px 70px;
-    box-shadow: 0px 35px 50px rgba( 0, 0, 0, 0.2 );
-}
+        @keyframes glow { 
+            from { 
+                text-shadow: 0 0 5px #00bfff, 0 0 10px #006f9f, 0 0 15px #004a66; 
+            } 
+            to { 
+                text-shadow: 0 0 20px #00bfff, 0 0 30px #008fcc, 0 0 40px #00bfff; 
+            } 
+        }
 
-.fl-table {
-    border-radius: 5px;
-    font-size: 12px;
-    font-weight: normal;
-    border: none;
-    border-collapse: collapse;
-    width: 100%;
-    max-width: 100%;
-    white-space: nowrap;
-    background-color: white;
-}
+        .form-group { 
+            margin-bottom: 20px; 
+        }
 
-.fl-table td, .fl-table th {
-    text-align: center;
-    padding: 8px;
-}
+        input, select { 
+            padding: 10px; 
+            width: 100%; 
+            background-color: rgba(0, 191, 255, 0.1);
+            border: 1px solid #00bfff;
+            color: #00bfff;
+            border-radius: 5px;
+            margin-top: 5px;
+        }
 
-.fl-table td {
-    border-right: 1px solid #f8f8f8;
-    font-size: 12px;
-}
+        input:focus, select:focus {
+            outline: none;
+            box-shadow: 0 0 8px rgba(0, 191, 255, 0.6);
+        }
 
-.fl-table thead th {
-    color: #ffffff;
-    background: #4FC3A1;
-}
+        button { 
+            background-color: rgba(0, 191, 255, 0.1); 
+            color: #00bfff; 
+            padding: 12px; 
+            border: 2px solid #00bfff; 
+            cursor: pointer; 
+            font-size: 18px; 
+            border-radius: 8px; 
+            transition: all 0.3s ease; 
+            width: 100%; 
+            box-shadow: 0 0 8px rgba(0, 191, 255, 0.4); 
+            margin-top: 10px;
+        }
 
+        button:hover { 
+            background-color: #00bfff; 
+            color: #0d1117; 
+            box-shadow: 0 0 12px rgba(0, 191, 255, 0.8); 
+        }
 
-.fl-table thead th:nth-child(odd) {
-    color: #ffffff;
-    background: #324960;
-}
+        img {
+            max-width: 100%;
+            height: auto;
+            margin: 20px 0;
+            border-radius: 8px;
+            box-shadow: 0 0 15px rgba(0, 191, 255, 0.5);
+        }
 
-.fl-table tr:nth-child(even) {
-    background: #F8F8F8;
-}
+        /* Table Styles */
+        .table-wrapper {
+            margin: 30px 0;
+            box-shadow: 0 0 20px rgba(0, 191, 255, 0.3);
+        }
 
-/* Responsive */
+        .fl-table {
+            border-radius: 8px;
+            font-size: 14px;
+            border: none;
+            border-collapse: collapse;
+            width: 100%;
+            white-space: nowrap;
+            background-color: rgba(0, 191, 255, 0.05);
+            overflow: hidden;
+        }
 
-@media (max-width: 767px) {
-    .fl-table {
-        display: block;
-        width: 100%;
-    }
-    .table-wrapper:before{
-        content: "Scroll horizontally >";
-        display: block;
-        text-align: right;
-        font-size: 11px;
-        color: white;
-        padding: 0 0 10px;
-    }
-    .fl-table thead, .fl-table tbody, .fl-table thead th {
-        display: block;
-    }
-    .fl-table thead th:last-child{
-        border-bottom: none;
-    }
-    .fl-table thead {
-        float: left;
-    }
-    .fl-table tbody {
-        width: auto;
-        position: relative;
-        overflow-x: auto;
-    }
-    .fl-table td, .fl-table th {
-        padding: 20px .625em .625em .625em;
-        height: 60px;
-        vertical-align: middle;
-        box-sizing: border-box;
-        overflow-x: hidden;
-        overflow-y: auto;
-        width: 120px;
-        font-size: 13px;
-        text-overflow: ellipsis;
-    }
-    .fl-table thead th {
-        text-align: left;
-        border-bottom: 1px solid #f7f7f9;
-    }
-    .fl-table tbody tr {
-        display: table-cell;
-    }
-    .fl-table tbody tr:nth-child(odd) {
-        background: none;
-    }
-    .fl-table tr:nth-child(even) {
-        background: transparent;
-    }
-    .fl-table tr td:nth-child(odd) {
-        background: #F8F8F8;
-        border-right: 1px solid #E6E4E4;
-    }
-    .fl-table tr td:nth-child(even) {
-        border-right: 1px solid #E6E4E4;
-    }
-    .fl-table tbody td {
-        display: block;
-        text-align: center;
-    }
-}
+        .fl-table td, .fl-table th {
+            text-align: center;
+            padding: 12px;
+            border: 1px solid rgba(0, 191, 255, 0.2);
+        }
+
+        .fl-table thead th {
+            color: #0d1117;
+            background: #00bfff;
+            font-weight: bold;
+        }
+
+        .fl-table tr:nth-child(even) {
+            background-color: rgba(0, 191, 255, 0.03);
+        }
+
+        .fl-table tr:hover {
+            background-color: rgba(0, 191, 255, 0.1);
+        }
+
+        a {
+            color: #7b12dd;
+            text-decoration: none;
+            transition: color 0.3s;
+        }
+
+        a:hover {
+            color: #008fcc;
+            text-decoration: underline;
+        }
+
         .back-button {
             display: inline-block;
-            margin-top: 20px;
-            padding: 10px 20px;
-            background-color: #324960;
-            color: white;
+            margin-top: 30px;
+            padding: 12px 24px;
+            background-color: rgba(0, 191, 255, 0.1);
+            color: #00bfff;
             text-decoration: none;
-            border-radius: 5px;
-            transition: background-color 0.3s;
+            border-radius: 8px;
+            border: 2px solid #00bfff;
+            transition: all 0.3s;
+            box-shadow: 0 0 8px rgba(0, 191, 255, 0.4);
         }
+
         .back-button:hover {
-            background-color: #4FC3A1;
+            background-color: #00bfff;
+            color: #0d1117;
+            box-shadow: 0 0 12px rgba(0, 191, 255, 0.8);
+        }
+
+        p, h4 {
+            margin: 15px 0;
+            line-height: 1.6;
+        }
+
+        @media (max-width: 767px) {
+            body {
+                padding: 15px;
+            }
+            
+            h1 {
+                font-size: 2rem;
+            }
+            
+            .table-wrapper {
+                margin: 15px 0;
+            }
+            
+            .fl-table td, .fl-table th {
+                padding: 8px;
+                font-size: 12px;
+            }
         }
     </style>
 </head>
 <body>
     <h1>Exercise Calculator</h1>
-    <img src="https://www.inchcalculator.com/wp-content/uploads/2021/05/calories-burned-formula.png" width="400" height="200"></img>
+    <img src="https://www.inchcalculator.com/wp-content/uploads/2021/05/calories-burned-formula.png" width="400" height="200">
     <form method="post">
         {% csrf_token %}
         <div class="form-group">
@@ -176,75 +192,66 @@ h2{
         </div>
         <button type="submit">Calculate</button>
     </form>
-<p> Here is a list of common exercises and their MET values...</p>
     
-<div class="table-wrapper">
-    <table class="fl-table">
-        <thead>
-        <tr>
-            <th>Exercise</th>
-            <th>MET Value</th>
-        </tr>
-        </thead>
-        <tbody>
-        <tr>
-            <td>Brisk walk (4 mph)</td>
-            <td>5</td>
-            
-        </tr>
-        <tr>
-            <td>Biking (10-11.9 mph)</td>
-            <td>6.8</td>
-            
-        </tr>
-        <tr>
-            <td>Light to moderate calisthenics</td>
-            <td>3.5</td>
-           
-        </tr>
-        <tr>
-            <td>Jogging</td>
-            <td>7</td>
-            
-        </tr>
-        <tr>
-            <td>Hiking</td>
-            <td>6</td>
-           
-        </tr>
-        <tr>
-            <td>Running at 6 mph</td>
-            <td>9.8</td>
-           
-        </tr>
-        <tr>
-            <td>Soccer</td>
-            <td>10</td>
-            
-        </tr>
-        <tr>
-            <td>Rock climbing</td>
-            <td>8</td>
-            
-        </tr>
-        <tr>
-            <td>Weight training</td>
-            <td>10.9</td>
-            
-        </tr>
-        <tr>
-            <td>Boxing</td>
-            <td>7.8</td>
-            
-        </tr>
-        <tbody>
-    </table>
-</div>
-<h4> If the provided MET values here do not suffice, reference <a href="https://media.hypersites.com/clients/1235/filemanager/MHC/METs.pdf">this </a> document for more specific exercises/activities!</h4>
+    <p>Here is a list of common exercises and their MET values...</p>
+    
+    <div class="table-wrapper">
+        <table class="fl-table">
+            <thead>
+                <tr>
+                    <th>Exercise</th>
+                    <th>MET Value</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr>
+                    <td>Brisk walk (4 mph)</td>
+                    <td>5</td>
+                </tr>
+                <tr>
+                    <td>Biking (10-11.9 mph)</td>
+                    <td>6.8</td>
+                </tr>
+                <tr>
+                    <td>Light to moderate calisthenics</td>
+                    <td>3.5</td>
+                </tr>
+                <tr>
+                    <td>Jogging</td>
+                    <td>7</td>
+                </tr>
+                <tr>
+                    <td>Hiking</td>
+                    <td>6</td>
+                </tr>
+                <tr>
+                    <td>Running at 6 mph</td>
+                    <td>9.8</td>
+                </tr>
+                <tr>
+                    <td>Soccer</td>
+                    <td>10</td>
+                </tr>
+                <tr>
+                    <td>Rock climbing</td>
+                    <td>8</td>
+                </tr>
+                <tr>
+                    <td>Weight training</td>
+                    <td>10.9</td>
+                </tr>
+                <tr>
+                    <td>Boxing</td>
+                    <td>7.8</td>
+                </tr>
+            </tbody>
+        </table>
+    </div>
+    
+    <h4>If the provided MET values here do not suffice, reference <a href="https://media.hypersites.com/clients/1235/filemanager/MHC/METs.pdf">this</a> document for more specific exercises/activities!</h4>
       
-<div style="text-align: center; margin-top: 20px;">
-    <a href="{% url 'home' %}" class="back-button">← Back to Home</a>
-</div>
-   
+    <div style="text-align: center; margin-top: 20px;">
+        <a href="{% url 'home' %}" class="back-button">← Back to Home</a>
+    </div>
 </body>
 </html>
