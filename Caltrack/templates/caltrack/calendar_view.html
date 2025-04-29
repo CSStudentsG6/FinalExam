@@ -1,0 +1,44 @@
+{% extends 'caltrack/base.html' %}
+{% load static %}
+
+{% block content %}
+<div class="container mt-4">
+    <h1 class="mb-4">{{ month }} {{ year }} Calendar</h1>
+
+    <table class="table table-bordered">
+        <thead>
+            <tr>
+                <th>Sun</th>
+                <th>Mon</th>
+                <th>Tue</th>
+                <th>Wed</th>
+                <th>Thu</th>
+                <th>Fri</th>
+                <th>Sat</th>
+            </tr>
+        </thead>
+        <tbody>
+            {% for week in calendar %}
+                <tr>
+                    {% for day in week %}
+                        <td>
+                            {% if day.month == today.month %}
+                                <strong>{{ day.day }}</strong><br>
+                                {% for d, meals in entry_map.items %}
+                                    {% if d == day %}
+                                        <ul style="padding-left: 15px; margin-top: 5px;">
+                                            {% for meal in meals %}
+                                                <li>{{ meal }}</li>
+                                            {% endfor %}
+                                        </ul>
+                                    {% endif %}
+                                {% endfor %}
+                            {% endif %}
+                        </td>
+                    {% endfor %}
+                </tr>
+            {% endfor %}
+        </tbody>
+    </table>
+</div>
+{% endblock %}

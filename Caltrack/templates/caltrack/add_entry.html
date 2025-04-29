@@ -1,0 +1,13 @@
+{% extends 'caltrack/base.html' %}
+
+{% block content %}
+<div class="container">
+    <h1 class="my-4">Add Calorie Entry</h1>
+    <form method="post">
+        {% csrf_token %}
+        {{ form.as_p }}
+        <button type="submit" class="btn btn-success">Add Entry</button>
+    </form>
+</div>
+{% endblock %}
+
