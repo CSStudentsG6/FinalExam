@@ -5,88 +5,89 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
   <title>System Interface</title>
   <style>
-    body {
-      background-color: #0d1117;
-      color: #00bfff;
-      font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-      text-align: center;
-      margin: 0;
-      padding: 0;
-      height: 100vh;
-      display: flex;
-      flex-direction: column;
-      justify-content: center;
-      align-items: center;
-      position: relative;
-      overflow: hidden;
+    /* Your existing CSS styles */
+    body { 
+      background-color: #0d1117; 
+      color: #00bfff; 
+      font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif; 
+      text-align: center; 
+      margin: 0; 
+      padding: 0; 
+      height: 100vh; 
+      display: flex; 
+      flex-direction: column; 
+      justify-content: center; 
+      align-items: center; 
+      position: relative; 
+      overflow: hidden; 
     }
 
-    h1 {
-      font-size: 3rem;
-      color: #00bfff;
-      animation: glow 1.5s ease-in-out infinite alternate;
-      text-shadow: 0 0 10px #00bfff, 0 0 20px #006f9f, 0 0 30px #004a66;
+    h1 { 
+      font-size: 3rem; 
+      color: #00bfff; 
+      animation: glow 1.5s ease-in-out infinite alternate; 
+      text-shadow: 0 0 10px #00bfff, 0 0 20px #006f9f, 0 0 30px #004a66; 
     }
 
-    @keyframes glow {
-      from {
-        text-shadow: 0 0 5px #00bfff, 0 0 10px #006f9f, 0 0 15px #004a66;
-      }
-      to {
-        text-shadow: 0 0 20px #00bfff, 0 0 30px #008fcc, 0 0 40px #00bfff;
-      }
+    @keyframes glow { 
+      from { 
+        text-shadow: 0 0 5px #00bfff, 0 0 10px #006f9f, 0 0 15px #004a66; 
+      } 
+      to { 
+        text-shadow: 0 0 20px #00bfff, 0 0 30px #008fcc, 0 0 40px #00bfff; 
+      } 
     }
 
-    .button-container {
-      margin-top: 30px;
-      display: flex;
-      flex-direction: column;
-      gap: 15px;
-      align-items: center;
+    .button-container { 
+      margin-top: 30px; 
+      display: flex; 
+      flex-direction: column; 
+      gap: 15px; 
+      align-items: center; 
     }
 
-    button {
-      background-color: rgba(0, 191, 255, 0.1);
-      color: #00bfff;
-      padding: 12px 24px;
-      border: 2px solid #00bfff;
-      cursor: pointer;
-      font-size: 18px;
-      border-radius: 8px;
-      transition: all 0.3s ease;
-      width: 220px;
-      box-shadow: 0 0 8px rgba(0, 191, 255, 0.4);
+    button { 
+      background-color: rgba(0, 191, 255, 0.1); 
+      color: #00bfff; 
+      padding: 12px 24px; 
+      border: 2px solid #00bfff; 
+      cursor: pointer; 
+      font-size: 18px; 
+      border-radius: 8px; 
+      transition: all 0.3s ease; 
+      width: 220px; 
+      box-shadow: 0 0 8px rgba(0, 191, 255, 0.4); 
     }
 
-    button:hover {
-      background-color: #00bfff;
-      color: #0d1117;
-      box-shadow: 0 0 12px rgba(0, 191, 255, 0.8);
+    button:hover { 
+      background-color: #00bfff; 
+      color: #0d1117; 
+      box-shadow: 0 0 12px rgba(0, 191, 255, 0.8); 
     }
 
-    .calculator-button {
-      position: absolute;
-      bottom: 20px;
-      right: 20px;
-      background-color: #00bfff;
-      color: #0d1117;
-      border: none;
-      width: 60px;
-      height: 60px;
-      border-radius: 50%;
-      font-size: 24px;
-      cursor: pointer;
-      box-shadow: 0 0 10px rgba(0, 191, 255, 0.6), 0 0 20px rgba(0, 191, 255, 0.4);
-      transition: background-color 0.3s ease, transform 0.2s ease;
+    .calculator-button { 
+      position: absolute; 
+      bottom: 20px; 
+      right: 20px; 
+      background-color: #00bfff; 
+      color: #0d1117; 
+      border: none; 
+      width: 60px; 
+      height: 60px; 
+      border-radius: 50%; 
+      font-size: 24px; 
+      cursor: pointer; 
+      box-shadow: 0 0 10px rgba(0, 191, 255, 0.6), 0 0 20px rgba(0, 191, 255, 0.4); 
+      transition: background-color 0.3s ease, transform 0.2s ease; 
     }
 
-    .calculator-button:hover {
-      background-color: #008fcc;
-      transform: scale(1.1);
+    .calculator-button:hover { 
+      background-color: #008fcc; 
+      transform: scale(1.1); 
     }
 
-    a {
-      text-decoration: none;
+    a { 
+      text-decoration: none; 
     }
   </style>
 </head>
@@ -100,11 +101,14 @@
     <!-- Restaurant Finder Button -->
     <a href="{% url 'choose_budget' %}"><button>🍱 Restaurant Finder</button></a>
 
+<<<<<<< HEAD
 
+=======
+>>>>>>> e12f5462a9c0eaee8743860ade15a2fad7053b37
     <!-- BMI Calculator Button -->
     <a href="{% url 'BMI_Calculator:calculate_bmi' %}"><button>⚖️ BMI Calculator</button></a>  
   </div>
-     
+
   <!-- Calculator Button -->
   <a href="{% url 'calculator:calculator' %}"><button class="calculator-button">🧮</button></a>
 </body>
