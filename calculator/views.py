@@ -25,4 +25,11 @@ def exercise_calculator(request):
             'converted_weight': calculation.weight_value * 0.453592 if weight_unit == 'lbs' else calculation.weight_value
         })
     
-    return render(request, 'input.html')
+    # Get target_calories from URL parameters if available
+    target_calories = request.GET.get('target_calories')
+    is_imported = 'target_calories' in request.GET
+    
+    return render(request, 'input.html', {
+        'target_calories': target_calories,
+        'is_imported': is_imported
+    })

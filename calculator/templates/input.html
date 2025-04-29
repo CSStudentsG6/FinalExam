@@ -167,10 +167,37 @@
                 font-size: 12px;
             }
         }
+
+        .alert {
+            padding: 15px;
+            margin-bottom: 20px;
+            border: 1px solid transparent;
+            border-radius: 4px;
+            animation: fadeOut 3s forwards;
+            animation-delay: 2s;
+        }
+
+        .alert-success {
+            color: #155724;
+            background-color: #d4edda;
+            border-color: #c3e6cb;
+        }
+
+        @keyframes fadeOut {
+            from { opacity: 1; }
+            to { opacity: 0; }
+        }
     </style>
 </head>
 <body>
     <h1>Exercise Calculator</h1>
+    
+    {% if is_imported %}
+    <div class="alert alert-success" role="alert">
+        Import from CalTrack successful!
+    </div>
+    {% endif %}
+
     <img src="https://www.inchcalculator.com/wp-content/uploads/2021/05/calories-burned-formula.png" width="400" height="200">
     <form method="post">
         {% csrf_token %}
@@ -188,7 +215,7 @@
         </div>
         <div class="form-group">
             <label>Target Calories:</label>
-            <input type="number" name="target_calories" step="1" min="1" required>
+            <input type="number" name="target_calories" step="1" min="1" required value="{{ target_calories|default:'' }}">
         </div>
         <button type="submit">Calculate</button>
     </form>

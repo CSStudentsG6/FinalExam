@@ -37,23 +37,31 @@
     </script>
 
     <h3>All Entries</h3>
-    <table class="table table-striped">
-        <thead>
-            <tr>
-                <th>Date</th>
-                <th>Meal</th>
-                <th>Calories</th>
-            </tr>
-        </thead>
-        <tbody>
-            {% for entry in entries %}
-            <tr>
-                <td>{{ entry.date }}</td>
-                <td>{{ entry.meal }}</td>
-                <td>{{ entry.calories }}</td>
-            </tr>
-            {% endfor %}
-        </tbody>
-    </table>
+    {% for entry in entries %}
+    <div class="row mb-2 align-items-center">
+        <div class="col-md-9">
+            <div class="card">
+                <div class="card-body">
+                    <div class="row">
+                        <div class="col-md-4">
+                            <strong>Date:</strong> {{ entry.date }}
+                        </div>
+                        <div class="col-md-4">
+                            <strong>Meal:</strong> {{ entry.meal }}
+                        </div>
+                        <div class="col-md-4">
+                            <strong>Calories:</strong> {{ entry.calories }}
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="col-md-3 text-end">
+            <a href="{% url 'calculator:calculator' %}?target_calories={{ entry.calories }}" class="btn btn-sm btn-outline-secondary">
+                -->
+            </a>
+        </div>
+    </div>
+    {% endfor %}
 </div>
 {% endblock %}
