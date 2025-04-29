@@ -6,9 +6,9 @@
     <title>Your Final Restaurant Choice</title>
     <style>
         body {
-            background-color: #1a2630; /* Navy blue background */
-            color: #ff6a13; /* Burnt orange text color */
-            font-family: Arial, sans-serif;
+            background-color: #0d1117; /* Updated to match home page */
+            color: #00bfff; /* Updated to match home page */
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
             text-align: center;
             margin: 0;
             padding: 0;
@@ -20,12 +20,11 @@
         }
 
         h1 {
-            color: #ff6a13; /* Burnt orange color */
-            margin-bottom: 20px;
+            color: #00bfff; /* Updated to match home page */
         }
 
         .card-container {
-            perspective: 1000px; /* This gives depth to the flip effect */
+            perspective: 1000px;
             margin-top: 10px;
             display: inline-block;
             margin-bottom: 40px;
@@ -40,13 +39,12 @@
             cursor: pointer;
         }
 
-        /* Card Front (Restaurant Name) */
         .card-front, .card-back {
             position: absolute;
             width: 100%;
             height: 100%;
-            backface-visibility: hidden; /* Hide the back when flipped */
-            border: 1px solid #ff6a13; /* Burnt orange border */
+            backface-visibility: hidden;
+            border: 1px solid #00bfff;
             border-radius: 8px;
             box-shadow: 0px 4px 6px rgba(0, 0, 0, 0.1);
             padding: 20px;
@@ -58,12 +56,11 @@
             justify-content: center;
             align-items: center;
             font-size: 24px;
-            color: #1a2630;
-            text-align: center;
+            color: #0d1117;
         }
 
         .card-back {
-            transform: rotateY(180deg); /* Start the back flipped */
+            transform: rotateY(180deg);
             padding-top: 20px;
             text-align: left;
         }
@@ -73,7 +70,7 @@
         }
 
         a {
-            color: #ff6a13;
+            color: #00bfff;
             text-decoration: none;
             font-size: 16px;
             margin-top: 20px;
@@ -84,10 +81,9 @@
             text-decoration: underline;
         }
 
-        /* Button styling */
         button {
-            background-color: #ff6a13; /* Burnt orange button color */
-            color: white;
+            background-color: #00bfff;
+            color: #0d1117;
             padding: 10px 20px;
             border: none;
             cursor: pointer;
@@ -96,7 +92,7 @@
         }
 
         button:hover {
-            background-color: #e55a00; /* Darker burnt orange on hover */
+            background-color: #008fcc;
         }
 
     </style>
@@ -107,35 +103,24 @@
 
     <div class="card-container">
         <div class="restaurant-card" onclick="flipCard(this)">
-            <!-- Front of the card with the Restaurant Name -->
             <div class="card-front">
                 <h3>{{ final_restaurant.name }}</h3>
             </div>
-            
-            <!-- Back of the card with the restaurant details -->
+
             <div class="card-back">
                 <p><strong>Category:</strong> {{ final_restaurant.category }}</p>
                 <p><strong>Budget:</strong> {{ final_restaurant.budget_ranges|join:', ' }}</p>
                 <p><a href="{{ final_restaurant.menu_url|default:'https://placeholder.com' }}" target="_blank">View Menu</a></p>
-
-                <!-- Add review link (replace the example with real Google Reviews link) -->
-                <p><strong>Enjoyed the food?</strong> Leave a review! <a href="https://www.google.com/search?q={{ final_restaurant.name }}+reviews" target="_blank">Leave a Review</a></p>
-
-                <!-- Display current rating -->
                 <p><strong>Rating:</strong> {{ final_restaurant.rating }} / 5</p>
-
-                <!-- Directions link -->
                 <p><a href="https://www.google.com/maps/search/?q={{ final_restaurant.name }}" target="_blank">Get Directions</a></p>
             </div>
         </div>
     </div>
 
-    <!-- Link to choose a new restaurant -->
     <div>
         <a href="{% url 'choose_category' %}">Choose a New Restaurant</a>
     </div>
 
-    <!-- Link to start over -->
     <div>
         <a href="{% url 'start_over' %}" class="btn btn-danger">Start Over</a>
     </div>
@@ -148,6 +133,7 @@
 
 </body>
 </html>
+
 
 
 
