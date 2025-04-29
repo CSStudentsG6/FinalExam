@@ -1,0 +1,86 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>{{ title }}</title>
+    <button onclick="window.location.href='/'">Main Menu</button>
+    <style>
+        h1 {
+            font-size: 3em;
+            color: #00bfff;
+            margin-bottom: 0.5em;
+            text-align: center;
+            animation: glow 1.5s ease-in-out infinite alternate;
+            text-shadow: 0 0 10px #00bfff, 0 0 20px #006f9f, 0 0 30px #004a66;
+        }
+        h2 {
+            font-size: 2.5em;
+            color: #00bfff;
+            margin-bottom: 0.5em;
+            text-align: center;
+            animation: glow 1.5s ease-in-out infinite alternate;
+            text-shadow: 0 0 10px #00bfff, 0 0 20px #006f9f, 0 0 30px #004a66;
+        }
+        ul {
+            list-style-type: none;
+            padding: 0;
+            margin: 0;
+            text-align: center;
+            font-size: 0.8em;
+            background-color: white;
+            width: 50%;
+            margin-left: 25%;
+            border: #333 2px solid;
+            border-radius: 12px;
+        }
+        ol {
+            list-style-type: none;
+            padding: 0;
+            margin: 0;
+            text-align: center;
+            font-size: 0.8em;
+            background-color: white;
+            width: 98%;
+            margin-left: 1%;
+            border: #333 2px solid;
+            border-radius: 12px;
+            
+        }
+        li {
+            font-size: 2em;
+            color: #333;
+            margin-bottom: 0.5em;
+        }
+        body{
+            background-color: #0d1117;
+        }
+        button{
+            border-radius: 12px;
+            font-size: 23px;        
+        }
+    </style>
+</head>
+<body>
+    <h1>{{ title }}</h1>
+
+    {% if ingredients %}
+    <h2>Ingredients</h2>
+    <ul>
+        {% for ingredient in ingredients %}
+            <li>{{ ingredient }}</li>
+        {% endfor %}
+    </ul>
+    {% endif %}
+
+    {% if instructions %}
+    <h2>Instructions</h2>
+    <ol>
+        {% for step in instructions %}
+            <li>{{ step }}</li>
+        {% endfor %}
+    </ol>
+    {% endif %}
+</body>
+</html>
+

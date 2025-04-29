@@ -1,0 +1,77 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>R.E.C.I.P.E.</title>
+    <style>
+        h1 {
+            font-size: 3em;
+            color: #00bfff;
+            margin-bottom: 0.5em;
+            text-align: center;
+            animation: glow 1.5s ease-in-out infinite alternate;
+            text-shadow: 0 0 10px #00bfff, 0 0 20px #006f9f, 0 0 30px #004a66;
+            width: 25%;
+            margin-left: 36%;  
+        }
+        h2 {
+            font-size: 2.5em;
+            color: #00bfff;
+            margin-bottom: 0.5em;
+            text-align: center;
+            animation: glow 1.5s ease-in-out infinite alternate;
+            text-shadow: 0 0 10px #00bfff, 0 0 20px #006f9f, 0 0 30px #004a66;
+        }
+        body{
+            background-color: #0d1117;
+            color: #00bfff;
+        }
+        p {
+            font-size: 1.5em;  
+            color: #00bfff;
+            text-align: center;
+        }
+        form{
+            text-align: center;
+        }
+        input[type=text] {
+            width: 50%;
+            padding: 12px 20px;
+            margin: 8px 0;
+            box-sizing: border-box;
+            border-radius: 5px;
+        } 
+        button{
+            border-radius: 12px;
+            font-size: 24px;        
+        }
+        ul {
+            list-style-type: none;
+            padding: 0;
+            margin: 0;
+            text-align: center;
+            font-size: 1.6em;
+        }
+    </style>
+</head>
+<body>
+    <h1>R.E.C.I.P.E.</h1>
+    <p>Robotic Epicurean Culinary Intelligence & Preparation Engine</p>
+    <form method="post">
+        {% csrf_token %}
+        <input type="text" name="user_input" required>
+        <button type="submit">Submit</button>
+    </form>
+    <h2>How To Use</h2>
+    <ul>
+        <li>Describe what kind of recipe you want. Be as specific or general as you like!</li>
+        <li>Example: “A quick and easy pasta recipe with chicken.”</li>
+        <li>Mention any dietary restrictions (e.g., gluten-free, keto, vegetarian).</li>
+        <li>Specify cooking methods (e.g., air fryer, stovetop, slow cooker).</li>
+        <li>Request a serving size (e.g., “For two people” or “Meal prep for the week”).</li>
+    </ul>
+    
+</body>
+</html>
+
