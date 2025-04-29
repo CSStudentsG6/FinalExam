@@ -25,7 +25,8 @@ INSTALLED_APPS = [
     'myapp',
     'myapp.restaurant',
     'calculator',
-    'BMI_Calculator',      # Adding the BMI_Calculator app from the BMI_Calculator branch
+    'BMI_Calculator',
+    'Caltrack',      # Adding the BMI_Calculator app from the BMI_Calculator branch
 ]
 
 MIDDLEWARE = [

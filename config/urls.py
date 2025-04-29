@@ -7,8 +7,9 @@ urlpatterns = [
     path('restaurant/', include('myapp.restaurant.urls')),  # This includes URLs for the restaurant app
     path('calculator/', include('calculator.urls')),  # Connects your calculator app's URLs
     path('bmi/', include('BMI_Calculator.urls')),  # Includes URLs for BMI_Calculator app
-    # Removed the line for the calorie tracker app
+    path('Caltrack/', include('Caltrack.urls')),  # Calorie Tracker app URLs
 ]
+
 
 
 
