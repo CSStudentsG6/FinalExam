@@ -1,0 +1,39 @@
+{% extends "caltrack/base.html" %}
+{% block content %}
+<div class="container">
+    <h1 class="text-center my-4">Calorie Tracker Dashboard</h1>
+
+    <a class="btn btn-primary mb-3" href="{% url 'caltrack:add_entry' %}">Add New Entry</a>
+    <a class="btn btn-secondary mb-3" href="{% url 'caltrack:calendar_view' %}">View Calendar</a>
+    <a class="btn btn-info mb-3" href="{% url 'caltrack:progress_report' %}">Progress Report</a>
+
+    <h3>Today's Entries</h3>
+    <table class="table table-striped">
+        <thead>
+            <tr>
+                <th>Meal</th>
+                <th>Calories</th>
+                <th>Date</th>
+                <th>Actions</th>
+            </tr>
+        </thead>
+        <tbody>
+            {% for entry in entries %}
+            <tr>
+                <td>{{ entry.meal }}</td>
+                <td>{{ entry.calories }}</td>
+                <td>{{ entry.date }}</td>
+                <td>
+                    <a class="btn btn-sm btn-warning" href="{% url 'caltrack:edit_entry' entry.id %}">Edit</a>
+                    <a class="btn btn-sm btn-danger" href="{% url 'caltrack:delete_entry' entry.id %}">Delete</a>
+                </td>
+            </tr>
+            {% empty %}
+            <tr>
+                <td colspan="4">No entries for today.</td>
+            </tr>
+            {% endfor %}
+        </tbody>
+    </table>
+</div>
+{% endblock %}
