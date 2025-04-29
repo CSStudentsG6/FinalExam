@@ -27,6 +27,7 @@ INSTALLED_APPS = [
     'calculator',
     'BMI_Calculator',
     'Caltrack',      # Adding the BMI_Calculator app from the BMI_Calculator branch
+    'blog', # ✅ Added line to include blog app
 ]
 
 MIDDLEWARE = [
